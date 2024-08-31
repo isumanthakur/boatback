@@ -45,14 +45,19 @@ REST_FRAMEWORK = {
 }
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
+    "http://localhost:3000",            # Local development
+    "https://frontmusafir.vercel.app",  # Vercel frontend
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    "http://localhost:3000",
+    "http://localhost:3000",            # Local development
+    "https://frontmusafir.vercel.app",  # Vercel frontend
 ]
 
 CORS_ALLOW_ALL_ORIGINS = False  # Only allow specific origins
+
+# If you want to allow credentials (cookies, authorization headers, etc.)
+CORS_ALLOW_CREDENTIALS = True
 
 REST_AUTH = {
     "USE_JWT": True,
