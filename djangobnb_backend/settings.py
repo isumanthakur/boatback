@@ -4,17 +4,17 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = "codewithstein"
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "codewithstein")
 
-DEBUG = True
+DEBUG = os.environ.get("DJANGO_DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "boatback.onrender.com"]
 
 AUTH_USER_MODEL = 'useraccount.User'
 
 SITE_ID = 1
 
-WEBSITE_URL = 'http://localhost:8000'
+WEBSITE_URL = 'https://boatback.onrender.com'
 
 CHANNEL_LAYERS = {
     'default': {
@@ -25,7 +25,7 @@ CHANNEL_LAYERS = {
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
-    "SIGNING_KEY": "acomplexkey",
+    "SIGNING_KEY":"acomplexkey",
     "ALGORITHM": "HS512",
 }
 
@@ -46,10 +46,12 @@ REST_FRAMEWORK = {
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
+    "https://frontmusafir.vercel.app",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:3000",
+    "https://frontmusafir.vercel.app",
 ]
 
 CORS_ALLOW_ALL_ORIGINS = False  # Only allow specific origins
@@ -124,8 +126,8 @@ DATABASES = {
     }
 }
 
-RAZORPAY_API_KEY = "rzp_test_scmAW4DgOtVaXl"
-RAZORPAY_SECRET_KEY = "3pzBHMFT0oNuDesnzBO3uKOU"
+RAZORPAY_API_KEY = os.environ.get("RAZORPAY_API_KEY", "rzp_test_scmAW4DgOtVaXl")
+RAZORPAY_SECRET_KEY = os.environ.get("RAZORPAY_SECRET_KEY", "3pzBHMFT0oNuDesnzBO3uKOU")
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
