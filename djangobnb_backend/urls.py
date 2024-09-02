@@ -11,4 +11,7 @@ urlpatterns = [
     path('api/chat/', include('chat.urls')),
     path('api/community/', include('community.urls')),  # Include community URLs
     path('api/payments/', include('payments.urls')),  # Include payment URLs here
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+
+# Serve media files using the configured MEDIA_URL
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
